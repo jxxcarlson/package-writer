@@ -55,7 +55,7 @@ handlePost = do
             writeBS "Successfully received packages and wrote to elm.json"
 
 routes :: [(ByteString, Snap ())]
-routes = [("/postEndpoint", method POST handlePost)]
+routes = [("/packageList", method POST handlePost)]
 
 
 
