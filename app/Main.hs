@@ -23,7 +23,7 @@ type PackageList = [Package]
 
 writeElmJson :: PackageList -> IO ()
 writeElmJson pkgs = do
-    let directDeps = Map.fromList [(name p, version p) | p <- pkgs]
+    let directDeps = Map.fromList $ ("elm/core", "1.0.5"):[(name p, version p) | p <- pkgs]
         elmJson = object [
             "type" .= ("application" :: String),
             "source-directories" .= (["../../repl-src"] :: [String]),
