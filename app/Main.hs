@@ -7,11 +7,13 @@ import Snap.Http.Server
 import Data.Aeson (FromJSON, eitherDecode, encode, ToJSON, toJSON, object, (.=))
 import Data.ByteString (ByteString)
 import Data.ByteString.Lazy (toStrict)
+import qualified Data.ByteString.Lazy.Char8 as BL
+import qualified Data.ByteString.Char8 as ByteString
 import GHC.Generics
 import System.IO (writeFile)
 import Control.Monad.IO.Class (liftIO)
 import qualified Data.Map as Map
-import qualified Data.ByteString.Char8 as ByteString
+
 import Snap.Http.Server.Config (setPort, defaultConfig)
 
 data Package = Package { name :: String, version :: String } deriving (Show, Generic)
@@ -39,7 +41,14 @@ writeElmJson pkgs = do
                 "indirect" .= (Map.empty :: Map.Map String String)
             ]
           ]
-    writeFile "elm.json" (show elmJson)
+    writeFile "elm.json" ( BL.unpack $ encode elmJson)
+
+
+--
+--    let myObject = -- your JSON object here, of type Value
+--    let jsonString = BL.unpack $ encode myObject
+--    writeFile "myOutput.json" jsonString
+--
 
 handlePost :: Snap ()
 handlePost = do
