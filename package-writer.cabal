@@ -25,6 +25,7 @@ source-repository head
 
 library
   exposed-modules:
+      Cors
       Package
   other-modules:
       Paths_package_writer
@@ -38,8 +39,10 @@ library
     , base >=4.7 && <5
     , bytestring ==0.11.*
     , containers ==0.6.*
+    , network-uri ==2.6.*
     , snap-core ==1.0.*
     , snap-server ==1.1.*
+    , unordered-containers ==0.2.*
   default-language: Haskell2010
 
 executable package-writer-exe
@@ -56,9 +59,11 @@ executable package-writer-exe
     , base >=4.7 && <5
     , bytestring ==0.11.*
     , containers ==0.6.*
+    , network-uri ==2.6.*
     , package-writer
     , snap-core ==1.0.*
     , snap-server ==1.1.*
+    , unordered-containers ==0.2.*
   default-language: Haskell2010
 
 test-suite package-writer-test
@@ -76,7 +81,9 @@ test-suite package-writer-test
     , base >=4.7 && <5
     , bytestring ==0.11.*
     , containers ==0.6.*
+    , network-uri ==2.6.*
     , package-writer
     , snap-core ==1.0.*
     , snap-server ==1.1.*
+    , unordered-containers ==0.2.*
   default-language: Haskell2010
